@@ -519,7 +519,7 @@ hr {
   line-height: 0;
   margin-bottom: 0;
   padding: 27px 44px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   min-width: 200px;
   margin: 10px;
   cursor: pointer;

@@ -9,12 +9,38 @@ def home(request):
     news = News.objects.all()
     trendings = News.objects.filter(is_trending=True)
     categories = Category.objects.all()
+    topviews = News.objects.all().exclude(views__lt=4)
     context = {
         'news': news,
         'trendings': trendings,
         'categories': categories,
+        'topviews': topviews,
     }
     return render(request, 'index.html', context)
+
+def category(request):
+    news = News.objects.all()
+    categories = Category.objects.all()
+    context = {
+        'news': news,
+        'categories': categories,
+    }
+    return render(request, 'category.html', context)
+
+def about_us(request):
+
+    return render(request, 'about.html')
+
+
+def contact_us(request):
+    return render(request, 'contact.html')
+
+def latest(request):
+    news = News.objects.all();
+    context = {
+        'news': news,
+    }
+    return render(request, 'latest_news.html', context)
 
 def blog_single(request, id):
     news = News.objects.get(pk=id)
@@ -51,3 +77,4 @@ def handle_comment(request):
 
 
     return redirect(f"/detail/{news.pk}")
+

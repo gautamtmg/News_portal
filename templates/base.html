@@ -24,7 +24,12 @@
             <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
             <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
             <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+
+            {% block css %}{% endblock css %}
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0" nonce="fgqx7jJZ"></script>
    </head>
+
+ 
 
    <body>
        
@@ -52,8 +57,20 @@
                                 <div class="header-info-left">
                                     <ul>     
                                         <li><img src="assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
-                                        <li><img src="assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
+                                        <li id="my_date"><img src="assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June, </li>
                                     </ul>
+
+                                      <script>
+   
+   d = new Date();
+  const days = ['Sunday', 'Monday', 'Tudesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
+ var date = d.toDateString().split(' ');
+ var today = date[0]+', '+date[2]+'th '+date[1]+' '+date[3];
+  
+  document.getElementById('my_date').innerHTML = today;
+   
+   </script>
                                 </div>
                                 <div class="header-info-right">
                                     <ul class="header-social">    
@@ -96,10 +113,10 @@
                                     <nav>                  
                                         <ul id="navigation">    
                                             <li><a href="{% url 'home' %}">Home</a></li>
-                                            <li><a href="categori.html">Category</a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="latest_news.html">Latest News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href={% url 'category' %}>Category</a></li>
+                                            <li><a href={% url 'about' %}>About</a></li>
+                                            <li><a href={% url 'latest' %}>Latest News</a></li>
+                                            <li><a href={% url 'contact' %}>Contact</a></li>
                                             
                                         </ul>
                                     </nav>
@@ -236,7 +253,7 @@
                                 <ul>                             
                                     <li><a href="#">Terms of use</a></li>
                                     <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href={% url 'contact' %}>Contact</a></li>
                                 </ul>
                             </div>
                         </div>
